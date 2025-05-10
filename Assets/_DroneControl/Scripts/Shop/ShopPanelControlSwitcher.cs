@@ -26,6 +26,7 @@ namespace _DroneControl.Scripts.Shop
             {
                 if (_closePanelAction.IsPressed())
                 {
+                    Debug.Log("Panel closes");
                     ControlToPlayer();
                 }
             }

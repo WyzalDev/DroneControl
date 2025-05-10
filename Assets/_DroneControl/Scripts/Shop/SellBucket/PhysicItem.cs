@@ -2,8 +2,23 @@
 
 namespace _DroneControl.Scripts.Shop.SellBucket
 {
-    public class PhysicItem : MonoBehaviour
+    [CreateAssetMenu(fileName = "NewItem", menuName = "WyzalUtilities/Item")]
+    public class PhysicItem : ScriptableObject
     {
-        public Item item;
+        public PhysicItemTypes item;
+        
+        public Rarity rarity;
+
+        public int cost;
+        
+        public string name;
+
+    }
+
+    public enum Rarity
+    {
+        Common,
+        Uncommon,
+        Rare
     }
 }

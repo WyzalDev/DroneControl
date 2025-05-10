@@ -48,6 +48,9 @@ namespace _DroneControl.Scripts
         //Bucket events
         public static event Action NoItemsInBucket;
         
+        //Game control events
+        public static event Action EndGame;
+        
         //controls events invokes
         public static void InvokeActivatePlayerControl() => ActivatePlayerControl?.Invoke();
         public static void InvokeDeactivatePlayerControl() => DeactivatePlayerControl?.Invoke();
@@ -90,5 +93,8 @@ namespace _DroneControl.Scripts
         
         //Bucket events invokes
         public static void InvokeNoItemsInBucket() => NoItemsInBucket?.Invoke();
+        
+        //Game control events invokes
+        public static void InvokeEndGame() => EndGame?.Invoke();
     }
 }

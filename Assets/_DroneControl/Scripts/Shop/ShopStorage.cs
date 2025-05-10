@@ -10,16 +10,6 @@ namespace _DroneControl.Scripts.Shop
         private const int MAX_ITEMS = 6;
         public static int Balance = 50000;
         [SerializeField] public ItemInfo[] itemSlots = new ItemInfo[MAX_ITEMS];
-        [SerializeField] public ShopInfoHandler _ShopInfoHandler;
-
-        [Header("Balance shop pricing")] [SerializeField]
-        private int batteryCost;
-
-        [SerializeField] public int repairCost;
-        [SerializeField] public int scannerCost;
-        [SerializeField] public int batteryUpgradeCost;
-        [SerializeField] public int luckUpgradeCost;
-        [SerializeField] public int lifeUpgradeCost;
 
         public static ShopStorage Instance;
 
@@ -34,40 +24,6 @@ namespace _DroneControl.Scripts.Shop
             {
                 Destroy(gameObject);
             }
-        }
-
-        private void SellAllItems(List<PhysicItem> items)
-        {
-            foreach (var item in items)
-            {
-                switch (item.item)
-                {
-                    case Item.Battery:
-                        AddToBalance(batteryCost);
-                        break;
-                    case Item.Repair:
-                        AddToBalance(repairCost);
-                        break;
-                    case Item.Scanner:
-                        AddToBalance(scannerCost);
-                        break;
-                    case Item.BatteryUpgrade:
-                        AddToBalance(batteryUpgradeCost);
-                        break;
-                    case Item.ChanceUpgrade:
-                        AddToBalance(luckUpgradeCost);
-                        break;
-                    case Item.LifeUpgrade:
-                        AddToBalance(lifeUpgradeCost);
-                        break;
-                }
-            }
-        }
-
-        private void AddToBalance(int sum)
-        {
-            if (sum <= 0) return;
-            Balance += sum;
         }
 
         public static bool TryBuy(int slotNumber)

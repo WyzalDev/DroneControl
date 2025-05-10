@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _DroneControl.Scripts;
 using _DroneControl.TerminalPanel.Console;
+using TMPro;
 using UnityEngine;
 
 namespace _DroneControl.TerminalPanel.Minigame
@@ -11,6 +12,7 @@ namespace _DroneControl.TerminalPanel.Minigame
         [SerializeField] private int width;
 
         [SerializeField] private Tile tile;
+        [SerializeField] private LevelHandler levelHandler;
 
         [Header("Sprites Settings")]
         [SerializeField] private Sprite emptyCell;
@@ -31,18 +33,17 @@ namespace _DroneControl.TerminalPanel.Minigame
         public static bool isDocked;
 
         private Level _currentLevel;
-        private Transform parent;
+        private Transform _parent;
 
         private void Awake()
         {
+            EventManager.DockedTrue += NextLevel;
+            EventManager.UndockedTrue += ShowGrid;
+            EventManager.MoveWhenDontUndock += ShowGrid;
             if (Instance == null)
             {
                 Instance = this;
                 DontDestroyOnLoad(this);
-                EventManager.DockedTrue += NextLevel;
-                EventManager.DockedTrue += HideGrid;
-                EventManager.UndockedTrue += ShowGrid;
-                EventManager.MoveWhenDontUndock += ShowGrid;
             }
             else
             {
@@ -52,14 +53,14 @@ namespace _DroneControl.TerminalPanel.Minigame
 
         private void Start()
         {
-            parent = new GameObject("Grid Parent").transform;
-            parent.SetParent(transform);
-            parent.localPosition = Vector3.zero;
+            _parent = new GameObject("Grid Parent").transform;
+            _parent.SetParent(transform);
+            _parent.localPosition = Vector3.zero;
 
             gridArray = new Tile[width, height];
 
             GenerateGrid();
-            _currentLevel = LevelHandler.GetLevel();
+            _currentLevel = levelHandler.GetLevel();
             if (_currentLevel != null)
                 FillLevel();
         }
@@ -67,7 +68,6 @@ namespace _DroneControl.TerminalPanel.Minigame
         private void OnDestroy()
         {
             EventManager.DockedTrue -= NextLevel;
-            EventManager.DockedTrue -= HideGrid;
             EventManager.UndockedTrue -= ShowGrid;
             EventManager.MoveWhenDontUndock -= ShowGrid;
         }
@@ -77,25 +77,26 @@ namespace _DroneControl.TerminalPanel.Minigame
         public static void ShowGrid()
         {
             if (Instance._currentLevel != null)
-                Instance.parent.gameObject.SetActive(true);
+                Instance._parent.gameObject.SetActive(true);
         }
 
         public static void HideGrid()
         {
-            Instance.parent.gameObject.SetActive(false);
+            Instance._parent.gameObject.SetActive(false);
         }
 
         private void NextLevel()
         {
-            _currentLevel = LevelHandler.GetLevel();
+            _currentLevel = levelHandler.GetLevel();
             if (_currentLevel != null)
             {
                 FillLevel();
             }
             else
             {
-                return;
+                EventManager.InvokeEndGame();
             }
+            HideGrid();
         }
 
         private void FillLevel()
@@ -163,14 +164,14 @@ namespace _DroneControl.TerminalPanel.Minigame
                 {
                     var spawnedTile = Instantiate(tile, new Vector3(x, y), Quaternion.identity);
                     spawnedTile.name = $"Tile {x} {y}";
-                    spawnedTile.transform.parent = parent;
+                    spawnedTile.transform.parent = _parent;
                     spawnedTile.cellType = CellType.Empty;
                     gridArray[x, y] = spawnedTile;
                 }
             }
 
-            parent.localScale = new Vector3(0.245f, 0.245f, 1);
-            parent.localPosition = new Vector3(-0.475f, 1.18f, 9.81f);
+            _parent.localScale = new Vector3(0.245f, 0.245f, 1);
+            _parent.localPosition = new Vector3(-0.475f, 1.18f, 9.81f);
         }
 
         #endregion
@@ -340,7 +341,7 @@ namespace _DroneControl.TerminalPanel.Minigame
                 isDocked = false;
                 EventManager.InvokeUndockedTrue();
             }
-
+            else
             {
                 EventManager.InvokeUndockedFalse();
             }

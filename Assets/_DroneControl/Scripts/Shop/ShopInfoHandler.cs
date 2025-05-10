@@ -25,5 +25,10 @@ namespace _DroneControl.Scripts.Shop
             text.text = builder.ToString();
             lines.Clear();
         }
+
+        public void Clear()
+        {
+            text.text = "";
+        }
     }
 }
