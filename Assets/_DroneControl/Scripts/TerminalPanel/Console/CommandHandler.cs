@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using _DroneControl.Scripts;
+using _DroneControl.Scripts.Battery;
 using _DroneControl.TerminalPanel.Minigame;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ namespace _DroneControl.TerminalPanel.Console
     public class CommandHandler : MonoBehaviour
     {
         [SerializeField] private InfoPanel _infoPanel;
+        [SerializeField] private BatteryStorage batteryStorage;
         [Range(3,8)]
         [SerializeField] public int maxCommands = 5;
 
@@ -59,9 +62,17 @@ namespace _DroneControl.TerminalPanel.Console
                 return;
             }
             
+            Instance.batteryStorage.UseOneBattery();
+            EventManager.InvokeOneBatteryUsed();
+            
             Instance._infoPanel.AddLine(START_COMMAND_HANDLING);
             GridManager.HandleAllShipCommands(Instance.CommandQueue);
             Instance.CommandQueue.Clear();
+            
+            if (BatteryStorage.currentAmount <= 0 && !GridManager.isDocked)
+            {
+                EventManager.InvokeEndGame(false);
+            }
         }
         
         public static void HandleListCommand()

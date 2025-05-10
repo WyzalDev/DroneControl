@@ -49,7 +49,11 @@ namespace _DroneControl.Scripts
         public static event Action NoItemsInBucket;
         
         //Game control events
-        public static event Action EndGame;
+        public static event Action<bool> EndGame;
+        
+        //Battery events
+        public static event Action OneBatteryUsed;
+        public static event Action MaxCapacityWhenBuy;
         
         //controls events invokes
         public static void InvokeActivatePlayerControl() => ActivatePlayerControl?.Invoke();
@@ -95,6 +99,10 @@ namespace _DroneControl.Scripts
         public static void InvokeNoItemsInBucket() => NoItemsInBucket?.Invoke();
         
         //Game control events invokes
-        public static void InvokeEndGame() => EndGame?.Invoke();
+        public static void InvokeEndGame(bool flag) => EndGame?.Invoke(flag);
+        
+        //Battery events invokes
+        public static void InvokeOneBatteryUsed() => OneBatteryUsed?.Invoke();
+        public static void InvokeMaxCapacityWhenBuy() => MaxCapacityWhenBuy?.Invoke();
     }
 }

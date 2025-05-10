@@ -94,7 +94,7 @@ namespace _DroneControl.TerminalPanel.Minigame
             }
             else
             {
-                EventManager.InvokeEndGame();
+                EventManager.InvokeEndGame(true);
             }
             HideGrid();
         }

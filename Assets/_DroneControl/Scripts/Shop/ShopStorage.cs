@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using _DroneControl.Scripts.Battery;
 using _DroneControl.Scripts.Shop.SellBucket;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _DroneControl.Scripts.Shop
@@ -41,8 +43,10 @@ namespace _DroneControl.Scripts.Shop
                 switch (itemToBuy.itemType)
                 {
                     case Item.Battery:
-                        EventManager.InvokeBatteryBrought();
-                        Debug.Log("Battery brought");
+                        if(BatteryStorage.currentAmount < BatteryStorage.currentCapacity)
+                            EventManager.InvokeBatteryBrought();
+                        else 
+                            EventManager.InvokeMaxCapacityWhenBuy();
                         break;
                     case Item.Repair:
                         EventManager.InvokeRepairBrought();
