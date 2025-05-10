@@ -19,16 +19,16 @@ namespace _DroneControl.Scripts.Shop.SellBucket
             var itemList = new List<PhysicItem>();
             foreach (var colliderItem in colliders)
             {
-                if (colliderItem.TryGetComponent<PhysicItem>(out var item))
+                if (colliderItem.TryGetComponent<PhysicItemMono>(out var item))
                 {
-                    itemList.Add(item);
+                    itemList.Add(item.itemInfo);
+                    Destroy(item.gameObject);
                 }
             }
 
             if (itemList.Count == 0)
             {
                 EventManager.InvokeNoItemsInBucket();
-                return;
             }
             else
             {

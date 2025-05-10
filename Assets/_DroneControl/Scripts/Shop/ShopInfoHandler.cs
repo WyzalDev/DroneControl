@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,23 @@ namespace _DroneControl.Scripts.Shop
     {
         public TMP_Text text;
         private List<string> lines = new List<string>();
+
+        private const string NO_ITEMS_IN_BUCKET = "<color=\"red\">Nothing To Sell</color>";
+
+        private void Awake()
+        {
+            EventManager.NoItemsInBucket += NoItemsInBucketInfo;
+        }
+
+        private void OnDestroy()
+        {
+            EventManager.NoItemsInBucket -= NoItemsInBucketInfo;
+        }
+
+        private void NoItemsInBucketInfo()
+        {
+            text.text = NO_ITEMS_IN_BUCKET;
+        }
 
         public void AddLine(string line)
         {

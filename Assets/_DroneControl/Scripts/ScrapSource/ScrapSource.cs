@@ -8,14 +8,14 @@ namespace _DroneControl.ScrapSource
 {
     public class ScrapSource : MonoBehaviour
     {
-        public static int chanceForCommon = 60;
-        public static int chanceForUncommon = 30;
+        private int chanceForCommon = 60;
+        private int chanceForUncommon = 30;
 
-        public static int increasedChanceForCommon = 35;
-        public static int increasedChanceForUncommon = 40;
+        private int increasedChanceForCommon = 35;
+        private int increasedChanceForUncommon = 40;
 
         [SerializeField] private Transform generatePoint;
-        
+
         [SerializeField] private List<PhysicItemMono> commons;
         [SerializeField] private List<PhysicItemMono> uncommons;
         [SerializeField] private List<PhysicItemMono> rares;
