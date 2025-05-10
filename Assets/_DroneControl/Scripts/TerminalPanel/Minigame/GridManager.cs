@@ -20,6 +20,7 @@ namespace _DroneControl.TerminalPanel.Minigame
         [SerializeField] private Sprite playerOnLootCell;
         [SerializeField] private Sprite lootCell;
         [SerializeField] private Sprite shopCell;
+        [SerializeField] private Sprite playerOnShopCell;
         
 
         public static GridManager Instance;
@@ -123,6 +124,10 @@ namespace _DroneControl.TerminalPanel.Minigame
                             case CellType.Obstacle:
                                 gridArray[x, y].cellType = CellType.Obstacle;
                                 gridArray[x, y].spriteRenderer.sprite = obstacleCell;
+                                break;
+                            case CellType.Shop:
+                                gridArray[x, y].cellType = CellType.Shop;
+                                gridArray[x, y].spriteRenderer.sprite = shopCell;
                                 break;
                             case CellType.Empty:
                             default:
@@ -285,6 +290,10 @@ namespace _DroneControl.TerminalPanel.Minigame
                     gridArray[_playerX, _playerY].cellType = CellType.Loot;
                     gridArray[_playerX, _playerY].spriteRenderer.sprite = lootCell;
                     break;
+                case CellType.PlayerOnShop:
+                    gridArray[_playerX, _playerY].cellType = CellType.Shop;
+                    gridArray[_playerX, _playerY].spriteRenderer.sprite = shopCell;
+                    break;
             }
 
             _playerX = x;
@@ -300,6 +309,10 @@ namespace _DroneControl.TerminalPanel.Minigame
                     gridArray[_playerX, _playerY].cellType = CellType.PlayerOnLoot;
                     gridArray[_playerX, _playerY].spriteRenderer.sprite = playerOnLootCell;
                     break;
+                case CellType.Shop:
+                    gridArray[_playerX, _playerY].cellType = CellType.PlayerOnShop;
+                    gridArray[_playerX, _playerY].spriteRenderer.sprite = playerOnShopCell;
+                    break;
             }
         }
 
@@ -310,12 +323,12 @@ namespace _DroneControl.TerminalPanel.Minigame
                 EventManager.InvokeDockWhenDocked();
             }
 
-            if (gridArray[_playerX, _playerY].cellType != CellType.Shop)
+            if (gridArray[_playerX, _playerY].cellType != CellType.PlayerOnShop)
             {
                 EventManager.InvokeDockedFalse();
             }
 
-            if (gridArray[_playerX, _playerY].cellType == CellType.Shop)
+            if (gridArray[_playerX, _playerY].cellType == CellType.PlayerOnShop)
             {
                 isDocked = true;
                 EventManager.InvokeDockedTrue();
@@ -340,6 +353,8 @@ namespace _DroneControl.TerminalPanel.Minigame
             if (gridArray[_playerX, _playerY].cellType == CellType.PlayerOnLoot)
             {
                 EventManager.InvokeCollectedItemTrue();
+                gridArray[_playerX, _playerY].cellType = CellType.Player;
+                gridArray[_playerX, _playerY].spriteRenderer.sprite = playerCell;
             }
             else
             {

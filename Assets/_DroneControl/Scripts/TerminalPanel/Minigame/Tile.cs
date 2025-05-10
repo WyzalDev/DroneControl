@@ -20,7 +20,8 @@ namespace _DroneControl.TerminalPanel.Minigame
         Obstacle = 1,
         Player = 2,
         PlayerOnLoot = 3,
-        Loot = 4,
-        Shop = 5
+        PlayerOnShop = 4,
+        Loot = 5,
+        Shop = 6
     }
 }

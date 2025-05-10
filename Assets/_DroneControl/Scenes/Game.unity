@@ -1576,6 +1576,7 @@ MonoBehaviour:
   playerOnLootCell: {fileID: 21300000, guid: 9d69d9e6be3c52b4e999bc5087368d41, type: 3}
   lootCell: {fileID: 21300000, guid: 5a9414c64f9bc4943b3141f9f0994394, type: 3}
   shopCell: {fileID: 21300000, guid: 4020c3fd3bbd1004f818f6528ece7ae9, type: 3}
+  playerOnShopCell: {fileID: 21300000, guid: 78973fcdfceb20245b2c3f131a275ced, type: 3}
 --- !u!1 &316314478
 GameObject:
   m_ObjectHideFlags: 0
