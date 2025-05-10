@@ -1571,9 +1571,11 @@ MonoBehaviour:
   width: 12
   tile: {fileID: 5386977311698125049, guid: 597d3921be7e5d845a3ca6cf075859cc, type: 3}
   emptyCell: {fileID: 21300000, guid: 865721041bf4f29439520ec8a82a4818, type: 3}
-  obstacleCell: {fileID: 21300000, guid: d748762031893af40863063ceabfc7d3, type: 3}
+  obstacleCell: {fileID: 21300000, guid: 0457ecbd890493c4aa11c9f539260447, type: 3}
   playerCell: {fileID: 21300000, guid: d748762031893af40863063ceabfc7d3, type: 3}
-  lootCell: {fileID: 21300000, guid: d748762031893af40863063ceabfc7d3, type: 3}
+  playerOnLootCell: {fileID: 21300000, guid: 9d69d9e6be3c52b4e999bc5087368d41, type: 3}
+  lootCell: {fileID: 21300000, guid: 5a9414c64f9bc4943b3141f9f0994394, type: 3}
+  shopCell: {fileID: 21300000, guid: 4020c3fd3bbd1004f818f6528ece7ae9, type: 3}
 --- !u!1 &316314478
 GameObject:
   m_ObjectHideFlags: 0
