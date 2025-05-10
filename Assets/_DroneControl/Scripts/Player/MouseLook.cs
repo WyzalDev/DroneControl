@@ -25,7 +25,7 @@ namespace _DroneControl.Player
             _mouseInput = InputSystem.actions.FindAction("Look");
         }
 
-        void Update()
+        void LateUpdate()
         {
             if (!isBlocked)
             {
@@ -48,11 +48,13 @@ namespace _DroneControl.Player
         private static void Block()
         {
             isBlocked = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         private static void Unblock()
         {
             isBlocked = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

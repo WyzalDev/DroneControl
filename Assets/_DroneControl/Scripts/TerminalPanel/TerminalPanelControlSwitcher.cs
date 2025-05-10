@@ -9,12 +9,17 @@ namespace _DroneControl.TerminalPanel
 
         public static bool isBlocked = true;
 
+        public static bool isWriting = false;
+
         private InputAction _closePanelAction;
 
         private void Awake()
         {
             EventManager.ActivatePanelControl += Unblock;
             EventManager.DeactivatePanelControl += Block;
+            
+            EventManager.ActivateTextWritingControl += Write;
+            EventManager.DeactivateTextWritingControl += Unwrite;
         }
 
         private void Start()
@@ -26,7 +31,7 @@ namespace _DroneControl.TerminalPanel
         {
             if (!isBlocked)
             {
-                if (_closePanelAction.IsPressed())
+                if (_closePanelAction.IsPressed() && !isWriting)
                 {
                     ControlToPlayer();
                 }
@@ -43,6 +48,9 @@ namespace _DroneControl.TerminalPanel
         {
             EventManager.ActivatePanelControl -= Unblock;
             EventManager.DeactivatePanelControl -= Block;
+            
+            EventManager.ActivateTextWritingControl -= Write;
+            EventManager.DeactivateTextWritingControl -= Unwrite;
         }
 
         private static void Block()
@@ -53,6 +61,16 @@ namespace _DroneControl.TerminalPanel
         private static void Unblock()
         {
             isBlocked = false;
+        }
+
+        private static void Write()
+        {
+            isWriting = true;
+        }
+
+        private static void Unwrite()
+        {
+            isWriting = false;
         }
     }
 }
