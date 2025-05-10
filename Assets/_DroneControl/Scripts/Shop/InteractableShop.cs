@@ -1,13 +1,18 @@
-﻿using _DroneControl.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace _DroneControl.TerminalPanel
+namespace _DroneControl.Scripts.Shop
 {
-    public class InteractableTerminal : MonoBehaviour, IInteractable
+    public class InteractableShop : MonoBehaviour, IInteractable
     {
-        [SerializeField] private string tooltip = "DefaultTooltip";
+        [SerializeField] private string tooltip;
 
         public string TooltipMessage { get; set; }
+
+
+        private void Start()
+        {
+            TooltipMessage = tooltip;
+        }
 
         public static bool isBlocked = false;
 
@@ -23,7 +28,7 @@ namespace _DroneControl.TerminalPanel
             if (!isBlocked)
             {
                 EventManager.InvokeDeactivatePlayerControl();
-                EventManager.InvokeActivatePanelControl();
+                EventManager.InvokeActivateShopControl();
             }
         }
 

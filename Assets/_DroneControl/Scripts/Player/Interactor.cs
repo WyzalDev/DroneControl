@@ -1,4 +1,6 @@
 ﻿using _DroneControl.Scripts;
+using _DroneControl.Scripts.Shop;
+using _DroneControl.TerminalPanel.Minigame;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,6 +37,12 @@ namespace _DroneControl.Player
                 {
                     if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
                     {
+                        //TODO Uncomment when shop ready
+                        // if (interactable is InteractableShop interactableShop && !GridManager.isDocked)
+                        // {
+                        //     tooltip.text = "";
+                        //     return;
+                        // }
                         tooltip.text = interactable.TooltipMessage;
                         if (_interactAction.IsPressed())
                         {

@@ -2,10 +2,10 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace _DroneControl.Player
+namespace _DroneControl.Camera
 {
     [RequireComponent(typeof(CinemachineCamera))]
-    public class PlayerCameraActivityController : MonoBehaviour
+    public class ControlPanelCameraActivityController : MonoBehaviour
     {
         public static bool isTurned { get; private set; }
         
@@ -13,14 +13,15 @@ namespace _DroneControl.Player
         private void Awake()
         {
             _cinemachineCamera = GetComponent<CinemachineCamera>();
-            EventManager.ActivatePlayerControl += Unblock;
-            EventManager.DeactivatePlayerControl += Block;
+            _cinemachineCamera.gameObject.SetActive(false);
+            EventManager.ActivatePanelControl += Unblock;
+            EventManager.DeactivatePanelControl += Block;
         }
         
         private void OnDestroy()
         {
-            EventManager.ActivatePlayerControl -= Unblock;
-            EventManager.DeactivatePlayerControl -= Block;
+            EventManager.ActivatePanelControl -= Unblock;
+            EventManager.DeactivatePanelControl -= Block;
         }
 
         private void Block()

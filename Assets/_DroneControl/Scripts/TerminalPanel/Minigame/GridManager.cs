@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using _DroneControl.Scripts;
 using _DroneControl.TerminalPanel.Console;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _DroneControl.TerminalPanel.Minigame
@@ -29,7 +28,7 @@ namespace _DroneControl.TerminalPanel.Minigame
         //player functionality
         private int _playerX;
         private int _playerY;
-        private bool isDocked;
+        public static bool isDocked;
 
         private Level _currentLevel;
         private Transform parent;
@@ -166,7 +165,6 @@ namespace _DroneControl.TerminalPanel.Minigame
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.transform.parent = parent;
                     spawnedTile.cellType = CellType.Empty;
-                    Debug.Log($"{x}, {y}");
                     gridArray[x, y] = spawnedTile;
                 }
             }
