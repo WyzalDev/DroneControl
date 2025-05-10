@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8920978486852954536}
   - component: {fileID: 2243588055620620872}
   - component: {fileID: 269616364556496785}
+  - component: {fileID: 2163495800730180350}
   m_Layer: 0
   m_Name: Rock1
   m_TagString: Untagged
@@ -108,7 +109,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Size: {x: 1, y: 0.34, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &269616364556496785
 MonoBehaviour:
@@ -123,3 +124,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 8fec4b6f62dc6f04094c16e66a382dac, type: 2}
+--- !u!54 &2163495800730180350
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024681992648824460}
+  serializedVersion: 4
+  m_Mass: 0.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
