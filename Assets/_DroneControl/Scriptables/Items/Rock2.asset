@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1543ba058d471aad90341951118cc2, type: 3}
   m_Name: Rock2
   m_EditorClassIdentifier: 
-  item: 0
+  item: 7
   rarity: 0
-  cost: 0
-  name: 
+  cost: 150
+  name: Rock2

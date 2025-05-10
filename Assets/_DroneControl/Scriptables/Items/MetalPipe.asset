@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1543ba058d471aad90341951118cc2, type: 3}
   m_Name: MetalPipe
   m_EditorClassIdentifier: 
-  item: 0
-  rarity: 0
-  cost: 0
-  name: 
+  item: 2
+  rarity: 1
+  cost: 200
+  name: Metal Pipe
