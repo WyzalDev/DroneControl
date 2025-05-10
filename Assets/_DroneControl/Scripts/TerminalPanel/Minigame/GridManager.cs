@@ -239,7 +239,7 @@ namespace _DroneControl.TerminalPanel.Minigame
             }
         }
 
-        private void HandleMoveLeftCommand()
+        private void HandleMoveRightCommand()
         {
             if (isDocked)
             {
@@ -256,7 +256,7 @@ namespace _DroneControl.TerminalPanel.Minigame
             }
         }
 
-        private void HandleMoveRightCommand()
+        private void HandleMoveLeftCommand()
         {
             if (isDocked)
             {
@@ -278,12 +278,12 @@ namespace _DroneControl.TerminalPanel.Minigame
             switch (gridArray[_playerX, _playerY].cellType)
             {
                 case CellType.Player:
-                    gridArray[x, y].cellType = CellType.Empty;
-                    gridArray[x, y].spriteRenderer.sprite = emptyCell;
+                    gridArray[_playerX, _playerY].cellType = CellType.Empty;
+                    gridArray[_playerX, _playerY].spriteRenderer.sprite = emptyCell;
                     break;
                 case CellType.PlayerOnLoot:
-                    gridArray[x, y].cellType = CellType.Loot;
-                    gridArray[x, y].spriteRenderer.sprite = lootCell;
+                    gridArray[_playerX, _playerY].cellType = CellType.Loot;
+                    gridArray[_playerX, _playerY].spriteRenderer.sprite = lootCell;
                     break;
             }
 
@@ -293,12 +293,12 @@ namespace _DroneControl.TerminalPanel.Minigame
             switch (gridArray[_playerX, _playerY].cellType)
             {
                 case CellType.Empty:
-                    gridArray[x, y].cellType = CellType.Player;
-                    gridArray[x, y].spriteRenderer.sprite = playerCell;
+                    gridArray[_playerX, _playerY].cellType = CellType.Player;
+                    gridArray[_playerX, _playerY].spriteRenderer.sprite = playerCell;
                     break;
                 case CellType.Loot:
-                    gridArray[x, y].cellType = CellType.PlayerOnLoot;
-                    gridArray[x, y].spriteRenderer.sprite = playerOnLootCell;
+                    gridArray[_playerX, _playerY].cellType = CellType.PlayerOnLoot;
+                    gridArray[_playerX, _playerY].spriteRenderer.sprite = playerOnLootCell;
                     break;
             }
         }
