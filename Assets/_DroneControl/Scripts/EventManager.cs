@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using _DroneControl.Scripts.Shop.SellBucket;
 
 namespace _DroneControl.Scripts
 {
@@ -33,6 +35,7 @@ namespace _DroneControl.Scripts
         
         //Shop events
         public static event Action SellItemsInBucket;
+        public static event Action<List<PhysicItem>> SellAllItems;
         public static event Action SelledAllItems;
         public static event Action NotEnoughMoney;
         public static event Action BatteryBrought; 
@@ -42,7 +45,8 @@ namespace _DroneControl.Scripts
         public static event Action LuckUpgradeBrought;
         public static event Action LifeUpgradeBrought;
         
-
+        //Bucket events
+        public static event Action NoItemsInBucket;
         
         //controls events invokes
         public static void InvokeActivatePlayerControl() => ActivatePlayerControl?.Invoke();
@@ -72,8 +76,8 @@ namespace _DroneControl.Scripts
         public static void InvokeCollectedItemFalse() => CollectedItemFalse?.Invoke();
         
         //Shop events invokes
-        
         public static void InvokeSellItemsInBucket() => SellItemsInBucket?.Invoke();
+        public static void InvokeSellAllItems(List<PhysicItem> items) => SellAllItems?.Invoke(items); 
         public static void InvokeSelledAllItems() => SelledAllItems?.Invoke();
         public static void InvokeNotEnoughMoney() => NotEnoughMoney?.Invoke();
 
@@ -83,5 +87,8 @@ namespace _DroneControl.Scripts
         public static void InvokeBatteryUpgradeBrought() => BatteryUpgradeBrought?.Invoke();
         public static void InvokeLifeUpgradeBrought() => LifeUpgradeBrought?.Invoke();
         public static void InvokeLuckUpgradeBrought() => LuckUpgradeBrought?.Invoke();
+        
+        //Bucket events invokes
+        public static void InvokeNoItemsInBucket() => NoItemsInBucket?.Invoke();
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using _DroneControl.Scripts.Shop.SellBucket;
 using UnityEngine;
 
 namespace _DroneControl.Scripts.Shop
@@ -8,7 +10,17 @@ namespace _DroneControl.Scripts.Shop
         private const int MAX_ITEMS = 6;
         public static int Balance = 50000;
         [SerializeField] public ItemInfo[] itemSlots = new ItemInfo[MAX_ITEMS];
-        
+        [SerializeField] public ShopInfoHandler _ShopInfoHandler;
+
+        [Header("Balance shop pricing")] [SerializeField]
+        private int batteryCost;
+
+        [SerializeField] public int repairCost;
+        [SerializeField] public int scannerCost;
+        [SerializeField] public int batteryUpgradeCost;
+        [SerializeField] public int luckUpgradeCost;
+        [SerializeField] public int lifeUpgradeCost;
+
         public static ShopStorage Instance;
 
         private void Awake()
@@ -22,6 +34,40 @@ namespace _DroneControl.Scripts.Shop
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void SellAllItems(List<PhysicItem> items)
+        {
+            foreach (var item in items)
+            {
+                switch (item.item)
+                {
+                    case Item.Battery:
+                        AddToBalance(batteryCost);
+                        break;
+                    case Item.Repair:
+                        AddToBalance(repairCost);
+                        break;
+                    case Item.Scanner:
+                        AddToBalance(scannerCost);
+                        break;
+                    case Item.BatteryUpgrade:
+                        AddToBalance(batteryUpgradeCost);
+                        break;
+                    case Item.ChanceUpgrade:
+                        AddToBalance(luckUpgradeCost);
+                        break;
+                    case Item.LifeUpgrade:
+                        AddToBalance(lifeUpgradeCost);
+                        break;
+                }
+            }
+        }
+
+        private void AddToBalance(int sum)
+        {
+            if (sum <= 0) return;
+            Balance += sum;
         }
 
         public static bool TryBuy(int slotNumber)
@@ -61,12 +107,11 @@ namespace _DroneControl.Scripts.Shop
                         EventManager.InvokeLuckUpgradeBrought();
                         Debug.Log("Luck upgrade brought");
                         break;
-                    case Item.LifeUpgrade :
+                    case Item.LifeUpgrade:
                         itemToBuy.isBought = true;
                         EventManager.InvokeLifeUpgradeBrought();
                         Debug.Log("Life upgrade brought");
                         break;
-                    
                 }
 
                 return true;
@@ -85,11 +130,11 @@ namespace _DroneControl.Scripts.Shop
                     return "Repair";
                 case Item.Scanner:
                     return "Scanner";
-                case Item.BatteryUpgrade :
+                case Item.BatteryUpgrade:
                     return "Battery Capacity";
-                case Item.LifeUpgrade :
+                case Item.LifeUpgrade:
                     return "Ship Durability";
-                case Item.ChanceUpgrade :
+                case Item.ChanceUpgrade:
                     return "Luck Upgrade";
             }
 
@@ -101,8 +146,7 @@ namespace _DroneControl.Scripts.Shop
     public class ItemInfo
     {
         [SerializeField] public Item itemType;
-        [Range(0, 10000)]
-        [SerializeField] public int itemCost;
+        [Range(0, 10000)] [SerializeField] public int itemCost;
 
         [SerializeField] public bool isItemRebuyable;
         [SerializeField] public bool isBought;
