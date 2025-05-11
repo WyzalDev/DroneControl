@@ -19,9 +19,6 @@ namespace _DroneControl.Scripts
         public static event Action ActivateTextWritingControl;
         public static event Action DeactivateTextWritingControl;
         
-        //Level events
-        public static event Action NoMoreLevels;
-        
         //Commands events
         public static event Action DockedTrue;
         public static event Action DockedFalse;
@@ -53,7 +50,11 @@ namespace _DroneControl.Scripts
         
         //Battery events
         public static event Action OneBatteryUsed;
-        public static event Action MaxCapacityWhenBuy;
+        public static event Action MaxBatteryCapacityWhenBuy;
+        
+        //Health events
+        public static event Action OneHealthLost;
+        public static event Action MaxHealthCapacityWhenBuy;
         
         //controls events invokes
         public static void InvokeActivatePlayerControl() => ActivatePlayerControl?.Invoke();
@@ -67,9 +68,6 @@ namespace _DroneControl.Scripts
         
         public static void InvokeActivateTextWritingControl() => ActivateTextWritingControl?.Invoke();
         public static void InvokeDeactivateTextWritingControl() => DeactivateTextWritingControl?.Invoke();
-        
-        //level events invokes
-        public static void InvokeNoMoreLevels() => NoMoreLevels?.Invoke();
         
         //Commands events invokes
         public static void InvokeDockedTrue() => DockedTrue?.Invoke();
@@ -103,6 +101,10 @@ namespace _DroneControl.Scripts
         
         //Battery events invokes
         public static void InvokeOneBatteryUsed() => OneBatteryUsed?.Invoke();
-        public static void InvokeMaxCapacityWhenBuy() => MaxCapacityWhenBuy?.Invoke();
+        public static void InvokeMaxBatteryCapacityWhenBuy() => MaxBatteryCapacityWhenBuy?.Invoke();
+        
+        //Health events invokes
+        public static void InvokeOneHealthLost() => OneHealthLost?.Invoke();
+        public static void InvokeMaxHealthCapacityWhenBuy() => MaxHealthCapacityWhenBuy?.Invoke();
     }
 }

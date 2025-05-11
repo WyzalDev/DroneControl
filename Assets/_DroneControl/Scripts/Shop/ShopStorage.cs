@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _DroneControl.Scripts.Battery;
+using _DroneControl.Scripts.Health;
 using _DroneControl.Scripts.Shop.SellBucket;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -46,10 +47,13 @@ namespace _DroneControl.Scripts.Shop
                         if(BatteryStorage.currentAmount < BatteryStorage.currentCapacity)
                             EventManager.InvokeBatteryBrought();
                         else 
-                            EventManager.InvokeMaxCapacityWhenBuy();
+                            EventManager.InvokeMaxBatteryCapacityWhenBuy();
                         break;
                     case Item.Repair:
-                        EventManager.InvokeRepairBrought();
+                        if (HealthStorage.currentAmount < HealthStorage.currentCapacity)
+                            EventManager.InvokeRepairBrought();
+                        else
+                            EventManager.InvokeMaxHealthCapacityWhenBuy();
                         Debug.Log("Repair brought");
                         break;
                     case Item.Scanner:

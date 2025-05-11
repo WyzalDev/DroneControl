@@ -26,7 +26,6 @@ namespace _DroneControl.TerminalPanel.Minigame
             }
             else
             {
-                EventManager.InvokeNoMoreLevels();
                 return null;
             }
             

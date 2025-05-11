@@ -34,6 +34,8 @@ namespace Game.SceneManagement
     public enum SceneName
     {
         Bootstrap,
-        Game
+        Game,
+        WinEnd,
+        LoseEnd
     }
 }
