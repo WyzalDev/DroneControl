@@ -114,25 +114,30 @@ namespace _DroneControl.TerminalPanel.Minigame
                             case CellType.Player:
                                 gridArray[x, y].cellType = CellType.Player;
                                 gridArray[x, y].spriteRenderer.sprite = playerCell;
+                                gridArray[x, y].spriteRenderer.color = Color.green;
                                 _playerX = x;
                                 _playerY = y;
                                 break;
                             case CellType.Loot:
                                 gridArray[x, y].cellType = CellType.Loot;
                                 gridArray[x, y].spriteRenderer.sprite = lootCell;
+                                gridArray[x, y].spriteRenderer.color = Color.yellow;
                                 break;
                             case CellType.Obstacle:
                                 gridArray[x, y].cellType = CellType.Obstacle;
                                 gridArray[x, y].spriteRenderer.sprite = obstacleCell;
+                                gridArray[x, y].spriteRenderer.color = Color.white;
                                 break;
                             case CellType.Shop:
                                 gridArray[x, y].cellType = CellType.Shop;
                                 gridArray[x, y].spriteRenderer.sprite = shopCell;
+                                gridArray[x, y].spriteRenderer.color = Color.cyan;
                                 break;
                             case CellType.Empty:
                             default:
                                 gridArray[x, y].cellType = CellType.Empty;
                                 gridArray[x, y].spriteRenderer.sprite = emptyCell;
+                                gridArray[x, y].spriteRenderer.color = Color.white;
                                 break;
                         }
                     }
@@ -167,11 +172,12 @@ namespace _DroneControl.TerminalPanel.Minigame
                     spawnedTile.transform.parent = _parent;
                     spawnedTile.cellType = CellType.Empty;
                     gridArray[x, y] = spawnedTile;
+                    gridArray[x, y].spriteRenderer.color = Color.white;
                 }
             }
 
             _parent.localScale = new Vector3(0.245f, 0.245f, 1);
-            _parent.localPosition = new Vector3(-0.475f, 1.18f, 9.81f);
+            _parent.localPosition = new Vector3(-0.464f, 1.18f, 10.046f);
         }
 
         #endregion
