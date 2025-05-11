@@ -1,9 +1,11 @@
 ﻿using _DroneControl.Scripts;
 using _DroneControl.Scripts.Shop;
+using _DroneControl.Scripts.Shop.SellBucket;
 using _DroneControl.TerminalPanel.Minigame;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace _DroneControl.Player
 {
@@ -12,6 +14,8 @@ namespace _DroneControl.Player
         [SerializeField] private Transform InteractorSource;
         [SerializeField] public float interactDistance;
         [SerializeField] public TMP_Text tooltip;
+        [SerializeField] public Image itemGrabTooltip;
+        [SerializeField] public PlayerPickUpDrop PlayerPickUpDrop;
 
         public static bool isBlocked { get; private set; }
 
@@ -37,34 +41,45 @@ namespace _DroneControl.Player
                 {
                     if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
                     {
-                        //TODO Uncomment when shop ready
-                        // if (interactable is InteractableShop interactableShop && !GridManager.isDocked)
-                        // {
-                        //     tooltip.text = "";
-                        //     return;
-                        // }
+                        if (interactable is InteractableShop interactableShop && !GridManager.isDocked)
+                        {
+                            tooltip.text = "";
+                            itemGrabTooltip.gameObject.SetActive(false);
+                            return;
+                        }
+
                         tooltip.text = interactable.TooltipMessage;
                         if (_interactAction.IsPressed())
                         {
                             interactable.Interact();
                         }
                     }
+                    else if (hit.collider.gameObject.TryGetComponent(out PhysicItemMono item))
+                    {
+                        if(PlayerPickUpDrop._item == null)
+                            itemGrabTooltip.gameObject.SetActive(true);
+                        else
+                            itemGrabTooltip.gameObject.SetActive(false);
+                    }
                     else
                     {
+                        itemGrabTooltip.gameObject.SetActive(false);
                         tooltip.text = "";
                     }
                 }
                 else
                 {
                     tooltip.text = "";
+                    itemGrabTooltip.gameObject.SetActive(false);
                 }
             }
             else
             {
                 tooltip.text = "";
+                itemGrabTooltip.gameObject.SetActive(false);
             }
         }
-        
+
         private void OnDestroy()
         {
             EventManager.ActivatePlayerControl -= Unblock;
@@ -80,6 +95,5 @@ namespace _DroneControl.Player
         {
             isBlocked = false;
         }
-        
     }
 }

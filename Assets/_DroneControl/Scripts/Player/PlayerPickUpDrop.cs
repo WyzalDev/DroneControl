@@ -14,7 +14,7 @@ namespace _DroneControl.Player
 
         private InputAction holdAction;
 
-        private PhysicItemMono _item = null;
+        [NonSerialized] public PhysicItemMono _item = null;
 
         private void Start()
         {
