@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _DroneControl.Audio;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _DroneControl.Scripts.Shop
@@ -8,7 +9,9 @@ namespace _DroneControl.Scripts.Shop
         public static bool isBlocked = true;
 
         private InputAction _closePanelAction;
-
+        private InputAction _clickAction;
+        
+        
         private void Awake()
         {
             EventManager.ActivateShopControl += Unblock;
@@ -18,6 +21,8 @@ namespace _DroneControl.Scripts.Shop
         private void Start()
         {
             _closePanelAction = InputSystem.actions.FindAction("ClosePanel");
+            _clickAction = InputSystem.actions.FindAction("LeftClick");
+            _clickAction.performed += ClickHandle;
         }
 
         private void Update()
@@ -31,6 +36,12 @@ namespace _DroneControl.Scripts.Shop
                 }
             }
         }
+
+        private void ClickHandle(InputAction.CallbackContext context)
+        {
+            if(!isBlocked)
+                AudioStorage.PlayGlobalSfx("shopClick");
+        }
         
         public void ControlToPlayer()
         {
@@ -42,6 +53,7 @@ namespace _DroneControl.Scripts.Shop
         {
             EventManager.ActivateShopControl -= Unblock;
             EventManager.DeactivateShopControl -= Block;
+            _clickAction.performed -= ClickHandle;
         }
 
         private static void Block()

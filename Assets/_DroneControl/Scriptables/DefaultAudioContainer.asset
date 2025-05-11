@@ -12,5 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a634e24847efd664e8ea227b17a2abb3, type: 3}
   m_Name: DefaultAudioContainer
   m_EditorClassIdentifier: 
-  musicSounds: []
-  sfxSounds: []
+  musicSounds:
+  - name: background
+    volume: 0.5
+    clip: {fileID: 8300000, guid: f31848cf0b0bd014980566eb0268245d, type: 3}
+  sfxSounds:
+  - name: objFall
+    volume: 1
+    clip: {fileID: 8300000, guid: fb2b045d0d959d24eb237202782a0498, type: 3}
+  - name: monitorOn
+    volume: 2
+    clip: {fileID: 8300000, guid: 796f85508e5225d478b1217be1477b47, type: 3}
+  - name: monitorOff
+    volume: 2
+    clip: {fileID: 8300000, guid: cb9a66bee307d5c48a41e3d8caf67d0b, type: 3}
+  - name: step1
+    volume: 1
+    clip: {fileID: 8300000, guid: 0f5f05114fd7eb94084c0ae503e36a61, type: 3}
+  - name: step2
+    volume: 1
+    clip: {fileID: 8300000, guid: 53a5c0fb3a6f33545ac5c455ab0490c0, type: 3}
+  - name: MetalPipe
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 53a5c0fb3a6f33545ac5c455ab0490c0, type: 3}
+  - name: batterySlot
+    volume: 1
+    clip: {fileID: 8300000, guid: aa6daaf028573ff46baf4428c60de4f3, type: 3}
+  - name: batteryUnslot
+    volume: 1
+    clip: {fileID: 8300000, guid: c1f64af66d29a194ea1febc8800e6712, type: 3}
+  - name: shipHit
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 1a8d46ac944fa5f4a94f50367e7549c3, type: 3}
+  - name: lootFind
+    volume: 1
+    clip: {fileID: 8300000, guid: ccc3e9fd906932b40abf822de4dc91c1, type: 3}
+  - name: grabItem
+    volume: 1
+    clip: {fileID: 8300000, guid: 09eb72908168be242837bb6c54b9b7cb, type: 3}
+  - name: dropItem
+    volume: 1
+    clip: {fileID: 8300000, guid: 6bbe2cd0818c2a248aaad55c65f72c00, type: 3}
+  - name: noMoney
+    volume: 1
+    clip: {fileID: 8300000, guid: 01acf1c5af6ffb741811c4a7ab29cb5e, type: 3}
+  - name: win
+    volume: 1
+    clip: {fileID: 8300000, guid: f73ebc81bfbd5ae4b92403e767252905, type: 3}
+  - name: lose
+    volume: 1
+    clip: {fileID: 8300000, guid: 401f585c62b23e940a9e8f71c109e899, type: 3}
+  - name: shopClick
+    volume: 1
+    clip: {fileID: 8300000, guid: 4bf3072053a2d9143ac6eab9559f7beb, type: 3}
+  - name: cantDoThat
+    volume: 1
+    clip: {fileID: 8300000, guid: 01905bfa3cf9b2d448bd3cef1defedb5, type: 3}
+  - name: buyItem
+    volume: 1
+    clip: {fileID: 8300000, guid: 4fa8998e04056554fbf13b57a386c0cd, type: 3}
+  - name: submitCommand
+    volume: 1
+    clip: {fileID: 8300000, guid: 18d6097db69337a4c9011cfe2bb9a1ff, type: 3}

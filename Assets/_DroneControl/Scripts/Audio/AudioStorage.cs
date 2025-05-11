@@ -20,7 +20,7 @@ namespace _DroneControl.Audio
         public static AudioStorage Instance { get; private set; }
         public const float fadeDuration = 2f;
         
-        public readonly FadeSettings fadeSettings = new FadeSettings()
+        public static readonly FadeSettings fadeSettings = new FadeSettings()
         {
             durationIn = 0.5f,
             durationOut = 0.5f,

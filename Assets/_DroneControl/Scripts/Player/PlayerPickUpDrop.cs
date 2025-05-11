@@ -1,4 +1,5 @@
 ﻿using System;
+using _DroneControl.Audio;
 using _DroneControl.Scripts.Shop.SellBucket;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,6 +39,7 @@ namespace _DroneControl.Player
                 {
                     if (hit.collider.TryGetComponent(out PhysicItemMono item))
                     {
+                        AudioStorage.PlayGlobalSfx("grabItem");
                         _item = item;
                         _item.Grab(holdEndPoint);
                     }
@@ -46,6 +48,7 @@ namespace _DroneControl.Player
             else
             {
                 //drop
+                AudioStorage.PlayGlobalSfx("dropItem");
                 _item.Drop();
                 _item = null;
             }

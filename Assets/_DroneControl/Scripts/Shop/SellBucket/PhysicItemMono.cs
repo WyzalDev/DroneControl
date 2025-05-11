@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using _DroneControl.Audio;
+using UnityEngine;
 
 namespace _DroneControl.Scripts.Shop.SellBucket
 {
@@ -35,6 +37,16 @@ namespace _DroneControl.Scripts.Shop.SellBucket
                     Time.fixedDeltaTime * 10f);
                 rb.MovePosition(newPos);
             }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (itemInfo.item == PhysicItemTypes.MetalPipe)
+            {
+                AudioStorage.PlayGlobalSfx("MetalPipe");
+                return;
+            }
+            AudioStorage.PlayGlobalSfx("objFall");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using _DroneControl.Scripts;
+﻿using _DroneControl.Audio;
+using _DroneControl.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,10 @@ namespace _DroneControl.Player
         private Rigidbody _rigidbody;
         private Vector3 _inputKey;
         private InputAction moveAction;
+
+        private float currStepTimer = 0.4f;
+        private float CritTimerValue = 0.5f;
+        private bool isStep1 = true;
 
         public static bool isBlocked { get; private set; }
 
@@ -31,6 +36,28 @@ namespace _DroneControl.Player
         {
             var moveValue = moveAction.ReadValue<Vector2>();
             _inputKey = new Vector3(moveValue.x, 0, moveValue.y);
+            if (!moveValue.Equals(Vector2.zero) && !isBlocked)
+            {
+                currStepTimer = Mathf.Clamp(currStepTimer + Time.deltaTime, 0, CritTimerValue);
+                if (Mathf.Approximately(currStepTimer, CritTimerValue))
+                {
+                    if (isStep1)
+                    {
+                        AudioStorage.PlayGlobalSfx("step1");
+                        isStep1 = false;
+                    }
+                    else
+                    {
+                        AudioStorage.PlayGlobalSfx("step2");
+                        isStep1 = true;
+                    }
+                    currStepTimer = 0f;
+                }
+            }
+            else
+            {
+                currStepTimer = 0.4f;
+            }
         }
 
         private void FixedUpdate()

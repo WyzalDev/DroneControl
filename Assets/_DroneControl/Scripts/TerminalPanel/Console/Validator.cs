@@ -1,4 +1,5 @@
 ﻿using System;
+using _DroneControl.Audio;
 using UnityEngine;
 
 namespace _DroneControl.TerminalPanel.Console
@@ -7,6 +8,7 @@ namespace _DroneControl.TerminalPanel.Console
     {
         public void ValidateAndSendCommand(string command)
         {
+            AudioStorage.PlayGlobalSfx("submitCommand");
             if (command.Length < 4)
             {
                 CommandHandler.UnknowCommand();

@@ -11,7 +11,7 @@ namespace _DroneControl.Scripts.Shop
     public class ShopStorage : MonoBehaviour
     {
         private const int MAX_ITEMS = 6;
-        public static int Balance = 50000;
+        public static int Balance = 0;
         [SerializeField] public ItemInfo[] itemSlots = new ItemInfo[MAX_ITEMS];
 
         public static ShopStorage Instance;
@@ -36,7 +36,6 @@ namespace _DroneControl.Scripts.Shop
             {
                 if (!itemToBuy.isItemRebuyable && itemToBuy.isBought)
                 {
-                    EventManager.InvokeNotEnoughMoney();
                     return false;
                 }
 
@@ -79,6 +78,10 @@ namespace _DroneControl.Scripts.Shop
                 }
 
                 return true;
+            }
+            else
+            {
+                EventManager.InvokeNotEnoughMoney();
             }
 
             return false;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _DroneControl.Audio;
 using _DroneControl.Scripts;
 using _DroneControl.Scripts.Battery;
 using _DroneControl.TerminalPanel.Minigame;
@@ -51,6 +52,7 @@ namespace _DroneControl.TerminalPanel.Console
             else
             {
                 Instance._infoPanel.AddLine(COMMAND_CANT_BE_ADDED);
+                AudioStorage.PlayGlobalSfx("cantDoThat");
             }
         }
 
@@ -59,6 +61,7 @@ namespace _DroneControl.TerminalPanel.Console
             if (Instance.CommandQueue.Count == 0)
             {
                 Instance._infoPanel.AddLine(START_ERROR_NO_COMMANDS);
+                AudioStorage.PlayGlobalSfx("cantDoThat");
                 return;
             }
             
@@ -100,6 +103,7 @@ namespace _DroneControl.TerminalPanel.Console
         public static void UnknowCommand()
         {
             Instance._infoPanel.AddLine(UNKNOWN_COMMAND);
+            AudioStorage.PlayGlobalSfx("cantDoThat");
         }
     }
 
