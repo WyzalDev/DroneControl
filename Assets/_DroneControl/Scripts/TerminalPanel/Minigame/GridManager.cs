@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using _DroneControl.Scripts;
 using _DroneControl.TerminalPanel.Console;
-using TMPro;
 using UnityEngine;
 
 namespace _DroneControl.TerminalPanel.Minigame

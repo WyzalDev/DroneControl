@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 4
   rarity: 2
-  cost: 850
+  cost: 1000
   name: Sapphire

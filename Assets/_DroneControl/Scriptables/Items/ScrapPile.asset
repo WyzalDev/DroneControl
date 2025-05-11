@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 5
   rarity: 1
-  cost: 400
+  cost: 600
   name: ScrapPile

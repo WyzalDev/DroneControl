@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 2
   rarity: 1
-  cost: 200
+  cost: 400
   name: Metal Pipe

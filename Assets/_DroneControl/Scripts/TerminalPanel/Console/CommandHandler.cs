@@ -64,10 +64,14 @@ namespace _DroneControl.TerminalPanel.Console
                 AudioStorage.PlayGlobalSfx("cantDoThat");
                 return;
             }
-            
-            Instance.batteryStorage.UseOneBattery();
-            EventManager.InvokeOneBatteryUsed();
-            
+
+            if (!(Instance.CommandQueue.Count == 1 && Instance.CommandQueue[0] == ShipCommand.UnDock &&
+                  GridManager.isDocked))
+            {
+                Instance.batteryStorage.UseOneBattery();
+                EventManager.InvokeOneBatteryUsed();
+            }
+
             Instance._infoPanel.AddLine(START_COMMAND_HANDLING);
             GridManager.HandleAllShipCommands(Instance.CommandQueue);
             Instance.CommandQueue.Clear();

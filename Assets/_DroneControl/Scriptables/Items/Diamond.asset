@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 0
   rarity: 2
-  cost: 1000
+  cost: 1300
   name: Diamond

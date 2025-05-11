@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 3
   rarity: 2
-  cost: 350
+  cost: 800
   name: Ruby
